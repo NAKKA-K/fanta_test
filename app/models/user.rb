@@ -1,3 +1,3 @@
 class User < ApplicationRecord
-  has_many :party
+  has_one :party
 end

@@ -1,0 +1,39 @@
+<%= form_with(model: user, local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <div class="form-group cols4">
+      <%= form.label :name, "ニックネーム" %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+
+    <label class="mt-5">パーティー</label>
+    <div class="d-flex row">
+      <% @chars.each do |char| %>
+        <div class="col-3 mb-5">
+          <label>
+            <div>
+              <%= form.check_box :party,
+                { multiple: true, checked: @my_char_ids.any? {|id| char.id == id }, include_hidden: false }, char.id
+              %>
+              &nbsp;<%= char.name %>
+            </div>
+            <img src="<%= char.image_src %>" class="img-thumbnail">
+          </label>
+        </div>
+      <% end %>
+    </div>
+
+    <%= form.submit "保存する", class: "btn btn-primary float-right my-5" %>
+  </div>
+<% end %>
