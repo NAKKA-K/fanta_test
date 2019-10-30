@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 2019_10_30_113701) do
   create_table "battle_logs", force: :cascade do |t|
     t.integer "score"
     t.integer "damage"
-    t.integer "party_id_id"
+    t.integer "party_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["party_id_id"], name: "index_battle_logs_on_party_id_id"
+    t.index ["party_id"], name: "index_battle_logs_on_party_id"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_113701) do
   end
 
   create_table "parties", force: :cascade do |t|
-    t.integer "user_id_id"
+    t.integer "user_id"
     t.integer "character1_id"
     t.integer "character2_id"
     t.integer "character3_id"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_113701) do
     t.index ["character2_id"], name: "index_parties_on_character2_id"
     t.index ["character3_id"], name: "index_parties_on_character3_id"
     t.index ["character4_id"], name: "index_parties_on_character4_id"
-    t.index ["user_id_id"], name: "index_parties_on_user_id_id"
+    t.index ["user_id"], name: "index_parties_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

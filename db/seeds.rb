@@ -11,19 +11,23 @@ user = User.create!(name: 'user1', permissions: '11110000')
 img = 'https://images-na.ssl-images-amazon.com/images/I/51AcfZ3w30L._SX466_.jpg'
 Character.create!([
   { name: 'user1', image_src: img },
-  { name: 'user1', image_src: img },
-  { name: 'user1', image_src: img },
-  { name: 'user1', image_src: img },
-  { name: 'user1', image_src: img },
-  { name: 'user1', image_src: img },
-  { name: 'user1', image_src: img },
-  { name: 'user1', image_src: img },
-  { name: 'user1', image_src: img },
+  { name: 'user2', image_src: img },
+  { name: 'user3', image_src: img },
+  { name: 'user4', image_src: img },
+  { name: 'user5', image_src: img },
+  { name: 'user6', image_src: img },
+  { name: 'user7', image_src: img },
+  { name: 'user8', image_src: img },
+  { name: 'user9', image_src: img },
+  { name: 'user10', image_src: img },
+  { name: 'user11', image_src: img },
+  { name: 'user12', image_src: img },
 ])
 
-user.party.create!(
-  character1: Character.find(1).id,
-  character2: Character.find(2).id,
-  character3: Character.find(3).id,
-  character4: Character.find(4).id,
+Party.create!(
+  user: user,
+  character1_id: Character.find(1).id,
+  character2_id: Character.find(2).id,
+  character3_id: Character.find(3).id,
+  character4_id: Character.find(4).id,
 )

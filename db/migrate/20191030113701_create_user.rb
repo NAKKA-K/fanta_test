@@ -15,7 +15,7 @@ class CreateUser < ActiveRecord::Migration[5.2]
     end
 
     create_table :parties do |t|
-      t.references :user_id, foreign_key: true
+      t.references :user, foreign_key: true
       t.references :character1, foreign_key: { to_table: :characters }
       t.references :character2, foreign_key: { to_table: :characters }
       t.references :character3, foreign_key: { to_table: :characters }
@@ -27,7 +27,7 @@ class CreateUser < ActiveRecord::Migration[5.2]
     create_table :battle_logs do |t|
       t.integer :score
       t.integer :damage
-      t.references :party_id, foreign_key: true
+      t.references :party, foreign_key: true
 
       t.timestamps
     end
