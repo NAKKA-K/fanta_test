@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <title>FantaRhythm</title>
+        <meta charset="UTF-8">
+        <link  rel="shortcut icon" href="/public/images/favicon.ico">
+        <link rel="stylesheet"  href="/public/stylesheets/bootstrap.css">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='/public/stylesheets/google.css' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="/public/stylesheets/agroup.css">
+        <script>
+          function nextStep(){
+            var port = location.port;
+            var host = location.host;
+            var path = `http://${host}:${port}/agroup/`;
+            var path_num = Number(location.pathname.match( /[^/]+$/i )[0]) ;
+            if(path_num == 8){ path_num = 0}
+            else{ path_num += 1}
+            path = path + path_num;
+            location.href = path;
+          }
+        </script>
+    </head>
+    <body onload="setTimeout('nextStep()', 14000);">
+        <audio src="/public/music/<%= Number(data.num) + 1 %>.wav" autoplay loop></audio>
+        <div class="text-center">
+          <h1><span class="game_title">FantaRhythm</span> ランキング</h1>
+          <h2>曲名: <span class="musictitle"><%= data.array[data.num][0]["music"] %></span></h2>
+        </div>
+        <hr>
+          <% var rank = data.array[data.num]; %>
+          <% for(var i = 0; i < rank.length; i++){ %>
+            <% if(i < 3) { %>
+              <div class="text-center high_scores">
+                <img src="/public/images/crown.png" width="45" height="45" alt="crown">
+                <%= i + 1 %>位
+            <% }else{ %>
+              <div class="text-center scores">
+                <%= i + 1 %>位
+            <% } %>
+            <%= rank[i]["player_name"] %>
+            <%= rank[i]["score"] %>
+          </div>
+          <% }
+          %>
+          <span class="scroll">
+            <% if(Number(data.num) < 6){ %>
+              <img src="/public/images/slide/<%= Number(data.num) %>.png" height="65" alt="slide">
+            <% }else{ %>
+              <img src="/public/images/slide/<%= (Number(data.num) % 6) %>.png" height="65" alt="slide">
+            <% } %>
+          </span>
+    </body>
+</html>
