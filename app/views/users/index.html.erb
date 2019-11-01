@@ -1,4 +1,80 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FantaTest</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<h1>ランキング</h1>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+      function nextStep(){
+        var port = location.port;
+        var host = location.host;
+        var path = `http://${host}:${port}/users/`;
+        var path_num = Number(location.pathname.match( /[^/]+$/i )[0]) ;
+        if(path_num == 8){ path_num = 0}
+        else{ path_num += 1}
+        path = path + path_num;
+        location.href = path;
+      }
+    </script>
+  </head>
+
+  <body onload="setTimeout('nextStep()', 14000);">
+    <p id="notice"><%= notice %></p>
+
+    <% music_num = 1 %>
+    <audio src="/music/<%= music_num %>.wav" autoplay loop></audio>
+    <div class="text-center">
+      <h1><span class="game_title">FantaRhythm</span> ランキング</h1>
+      <h2>曲名: <span class="musictitle"><%= 'hello' %></span></h2>
+    </div>
+    <hr>
+    <%
+      ranks = [
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+        {'player_name': 'hello', 'score': 1000},
+      ]
+    %>
+    <% ranks.each_with_index do |rank, i| %>
+      <% if i < 3 %>
+        <div class="text-center high_scores">
+          <img src="/images/crown.png" width="45" height="45" alt="crown">
+          <%= i + 1 %>位
+      <% else %>
+        <div class="text-center scores">
+          <%= i + 1 %>位
+      <% end %>
+
+        <%= rank["player_name"] %>
+        <%= rank["score"] %>
+      </div>
+    <% end %>
+      <span class="scroll">
+        <% if music_num < 6 %>
+          <img src="/images/slide/<%= music_num %>.png" height="65" alt="slide">
+        <% else %>
+          <img src="/images/slide/<%= (music_num % 6) %>.png" height="65" alt="slide">
+        <% end %>
+      </span>
+
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>
 

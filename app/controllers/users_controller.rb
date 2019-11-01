@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update]
 
   def index
+    render :index, layout: false
   end
 
   # GET /users/1/edit
